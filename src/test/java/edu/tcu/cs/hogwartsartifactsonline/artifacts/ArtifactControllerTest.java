@@ -92,7 +92,7 @@ class ArtifactControllerTest {
     }
 
     @Test
-    void testfindArtifactByIdSuccess() throws Exception {
+    void testFindArtifactByIdSuccess() throws Exception {
         //Given
         given(this.artifactService.findById("1250808601744904191")).willReturn(this.artifacts.get(0));
         //When

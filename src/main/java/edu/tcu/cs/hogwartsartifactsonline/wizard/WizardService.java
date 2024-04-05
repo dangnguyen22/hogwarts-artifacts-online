@@ -21,4 +21,8 @@ public class WizardService {
 
     public List<Wizard> findAll(){return this.wizardRepository.findAll();}
 
+    public Wizard findById(String wizardId){
+        return this.wizardRepository.findById(wizardId)
+                .orElseThrow(() -> new WizardNotFoundException(wizardId));
+    }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Wizard implements Serializable {
     @Id
-    private Integer id;
+    private String id;
 
     private String name;
 
@@ -38,11 +38,11 @@ public class Wizard implements Serializable {
         this.name = name;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
