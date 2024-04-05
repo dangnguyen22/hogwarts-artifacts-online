@@ -1,6 +1,5 @@
 package edu.tcu.cs.hogwartsartifactsonline.wizard;
 
-import edu.tcu.cs.hogwartsartifactsonline.artifacts.ArtifactRepository;
 import edu.tcu.cs.hogwartsartifactsonline.artifacts.utils.IdWorker;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -24,5 +23,10 @@ public class WizardService {
     public Wizard findById(String wizardId){
         return this.wizardRepository.findById(wizardId)
                 .orElseThrow(() -> new WizardNotFoundException(wizardId));
+    }
+
+    public Wizard save(Wizard newWizard){
+        newWizard.setId(idWorker.nextId()+ "");
+        return this.wizardRepository.save(newWizard);
     }
 }

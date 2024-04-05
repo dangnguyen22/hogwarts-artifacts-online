@@ -1,7 +1,6 @@
 package edu.tcu.cs.hogwartsartifactsonline.wizards;
 
 import edu.tcu.cs.hogwartsartifactsonline.artifacts.Artifact;
-import edu.tcu.cs.hogwartsartifactsonline.artifacts.ArtifactRepository;
 import edu.tcu.cs.hogwartsartifactsonline.artifacts.utils.IdWorker;
 import edu.tcu.cs.hogwartsartifactsonline.wizard.Wizard;
 import edu.tcu.cs.hogwartsartifactsonline.wizard.WizardRepository;
@@ -20,8 +19,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
@@ -88,6 +85,24 @@ class WizardServiceTest {
         assertThat(returnWizard.getName()).isEqualTo(w.getName());
 
         verify(wizardRepository,times(1)).findById("2");
+    }
 
+    @Test
+    void testSaveSuccess(){
+        //Given
+       Wizard newWizard = new Wizard();
+       newWizard.setName("Albus Dumbledore");
+
+       given(idWorker.nextId()).willReturn(123456L);
+       given(wizardRepository.save(newWizard)).willReturn(newWizard);
+
+
+       //When
+        Wizard savedWizard = wizardRepository.save(newWizard);
+
+        //Then
+        assertThat(savedWizard.getId()).isEqualTo("123456");
+        assertThat(savedWizard.getName()).isEqualTo(newWizard.getName());
+        verify(wizardRepository,times(1)).save(newWizard);
     }
 }
