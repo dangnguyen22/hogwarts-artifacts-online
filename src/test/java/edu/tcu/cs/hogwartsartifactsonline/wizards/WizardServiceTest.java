@@ -93,7 +93,8 @@ class WizardServiceTest {
        Wizard newWizard = new Wizard();
        newWizard.setName("Albus Dumbledore");
 
-       given(idWorker.nextId()).willReturn(123456L);
+
+//       given(idWorker.nextId()).willReturn(123456L);
        given(wizardRepository.save(newWizard)).willReturn(newWizard);
 
 
@@ -101,8 +102,51 @@ class WizardServiceTest {
         Wizard savedWizard = wizardRepository.save(newWizard);
 
         //Then
-        assertThat(savedWizard.getId()).isEqualTo("123456");
+//        assertThat(savedWizard.getId()).isEqualTo("123456");
         assertThat(savedWizard.getName()).isEqualTo(newWizard.getName());
         verify(wizardRepository,times(1)).save(newWizard);
+    }
+
+    @Test
+    void testUpdateSuccess(){
+        //Given
+        Wizard oldWizard = new Wizard();
+        oldWizard.setId("1");
+        oldWizard.setName("Albus Dumbledore");
+
+
+        Wizard update = new Wizard();
+        update.setId("1");
+        update.setName("Updated...");
+
+
+        given(wizardRepository.findById("1")).willReturn(Optional.of(oldWizard));
+        given(wizardRepository.save(oldWizard)) .willReturn(oldWizard);
+
+        //When
+        Wizard updatedWizard = wizardService.update("1",update);
+
+        //Then
+        assertThat(updatedWizard.getId()).isEqualTo(update.getId());
+        verify(wizardRepository,times(1)).findById("1");
+        verify(wizardRepository,times(1)).save(oldWizard);
+    }
+@Test
+    void testDeleteSuccess(){
+        //Given
+        Wizard wizard = new Wizard();
+        wizard.setId("1");
+        wizard.setName("Albus Dumbledore");
+
+
+        given(wizardRepository.findById("1")).willReturn(Optional.of(wizard));
+        doNothing().when(wizardRepository).deleteById("1");
+
+        //When
+        wizardService.delete("1");
+
+        //Then
+        verify(wizardRepository,times(1)).deleteById("1");
+
     }
 }

@@ -1,14 +1,17 @@
 package edu.tcu.cs.hogwartsartifactsonline.wizards;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.tcu.cs.hogwartsartifactsonline.artifacts.Artifact;
+import edu.tcu.cs.hogwartsartifactsonline.artifacts.dto.ArtifactDto;
 import edu.tcu.cs.hogwartsartifactsonline.system.StatusCode;
 import edu.tcu.cs.hogwartsartifactsonline.wizard.Wizard;
 import edu.tcu.cs.hogwartsartifactsonline.wizard.WizardService;
-import org.aspectj.lang.annotation.After;
+import edu.tcu.cs.hogwartsartifactsonline.wizard.dto.WizardDto;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +21,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.BDDMockito.given;
 
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -93,6 +95,40 @@ import java.util.List;
                 .andExpect(jsonPath("$.data.id").value("1"))
                 .andExpect(jsonPath("$.data.name").value("Albus Dumbledore"));
 
+    }
+
+    @Test
+    void testUpdateWizardSuccess() throws Exception {
+//Given
+        WizardDto wizardDto = new WizardDto(eq("1"),"Albus Dumbledore",2);
+        String json = this.objectMapper.writeValueAsString(wizardDto);
+
+        Wizard updatedWizard = new Wizard();
+        updatedWizard.setId("1");
+        updatedWizard.setName("Updated....");
+
+        given(this.wizardService.update("1",Mockito.any(Wizard.class))).willReturn(updatedWizard);
+
+        //When and then
+        this.mockMvc.perform(put("/api/v1/wizards/1").contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.flag").value(true))
+                .andExpect(jsonPath("$.code").value(StatusCode.SUCCESS))
+                .andExpect(jsonPath("$.message").value("Update Success"))
+                .andExpect(jsonPath("$.data.id").value("1"))
+                .andExpect(jsonPath("$.data.name").value(updatedWizard.getName()));
+    }
+
+    @Test
+    void testDeleteWizardSuccessful() throws Exception {
+        //Given
+        doNothing().when(this.wizardService).delete("1");
+
+        //When and then
+        this.mockMvc.perform(delete("/api/v1/wizards/1").accept(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.flag").value(true))
+                .andExpect(jsonPath("$.code").value(StatusCode.SUCCESS))
+                .andExpect(jsonPath("$.message").value("Delete Success"))
+                .andExpect(jsonPath("$.data").isEmpty());
     }
 }
 

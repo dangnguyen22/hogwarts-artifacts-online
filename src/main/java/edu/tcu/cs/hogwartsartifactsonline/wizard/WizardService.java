@@ -29,4 +29,19 @@ public class WizardService {
         newWizard.setId(idWorker.nextId()+ "");
         return this.wizardRepository.save(newWizard);
     }
+
+    public Wizard update(String wizardId, Wizard update){
+        return this.wizardRepository.findById(wizardId)
+                .map(oldWizard -> {
+                    oldWizard.setName(update.getName());
+                    return this.wizardRepository.save(oldWizard);
+                })
+                .orElseThrow(() -> new WizardNotFoundException(wizardId));
+    }
+
+    public void delete(String wizardId){
+        this.wizardRepository.findById(wizardId)
+                .orElseThrow(() -> new WizardNotFoundException(wizardId));
+        this.wizardRepository.deleteById(wizardId);
+    }
 }
