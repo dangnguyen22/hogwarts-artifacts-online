@@ -63,7 +63,7 @@ class ArtifactServiceTest {
 
     @Test
     void testFindByIdSuccess() {
-        // Given. Arrange inputs and targets. Defime the behavior of Mock object artifactRepository
+        // Given. Arrange inputs and targets. Define the behavior of Mock object artifactRepository
 
 
         Artifact a = new Artifact();
@@ -73,7 +73,7 @@ class ArtifactServiceTest {
         a.setImageUrl("ImageUrl");
 
         Wizard w = new Wizard();
-        w.setId(2);
+        w.setId("2");
         w.setName("Harry Potter");
 
         a.setOwner(w);
