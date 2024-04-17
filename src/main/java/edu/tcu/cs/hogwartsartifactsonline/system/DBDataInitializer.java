@@ -4,6 +4,7 @@ import edu.tcu.cs.hogwartsartifactsonline.artifacts.Artifact;
 import edu.tcu.cs.hogwartsartifactsonline.artifacts.ArtifactRepository;
 import edu.tcu.cs.hogwartsartifactsonline.hogwartsuser.HogwartsUser;
 import edu.tcu.cs.hogwartsartifactsonline.hogwartsuser.UserRepository;
+import edu.tcu.cs.hogwartsartifactsonline.hogwartsuser.UserService;
 import edu.tcu.cs.hogwartsartifactsonline.wizard.Wizard;
 import edu.tcu.cs.hogwartsartifactsonline.wizard.WizardRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -14,12 +15,11 @@ public class DBDataInitializer implements CommandLineRunner {
 
     private final ArtifactRepository artifactRepository;
     private final WizardRepository wizardRepository;
-    private final UserRepository userRepository;
-
-    public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository, UserRepository userRepository) {
+    private final UserService userService;
+    public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository, UserRepository userRepository, UserService userService) {
         this.artifactRepository = artifactRepository;
         this.wizardRepository = wizardRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class DBDataInitializer implements CommandLineRunner {
 
         HogwartsUser u2 = new HogwartsUser();
         u2.setId(2);
-        u2.setUsername("eric");
+        u2.setUsername("john");
         u2.setPassword("123456");
         u2.setRole("user");
         u2.setEnabled(true);
@@ -98,9 +98,9 @@ public class DBDataInitializer implements CommandLineRunner {
         u3.setRole("user");
         u3.setEnabled(false);
 
-        this.userRepository.save(u1);
-        this.userRepository.save(u2);
-        this.userRepository.save(u3);
+        this.userService.save(u1);
+        this.userService.save(u2);
+        this.userService.save(u3);
 
 
         wizardRepository.save(w1);
