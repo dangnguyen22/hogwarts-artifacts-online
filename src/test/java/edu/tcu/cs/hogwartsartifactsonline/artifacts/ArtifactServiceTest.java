@@ -3,8 +3,6 @@ package edu.tcu.cs.hogwartsartifactsonline.artifacts;
 import edu.tcu.cs.hogwartsartifactsonline.artifacts.utils.IdWorker;
 import edu.tcu.cs.hogwartsartifactsonline.system.exception.ObjectNotFoundException;
 import edu.tcu.cs.hogwartsartifactsonline.wizard.Wizard;
-import jakarta.inject.Inject;
-import org.hibernate.resource.transaction.backend.jta.internal.synchronization.ExceptionMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -42,14 +39,14 @@ class ArtifactServiceTest {
         Artifact a1 = new Artifact();
         a1.setId("1250808601744904191");
         a1.setName("Deluminator");
-        a1.setDescrition("A Deluminator is a device invented by Albus Dumbledore that resembles a cigarette lighter. It is used to remove or absorb (as well as return) the light from any light source to provide cover to the user.");
+        a1.setDescription("A Deluminator is a device invented by Albus Dumbledore that resembles a cigarette lighter. It is used to remove or absorb (as well as return) the light from any light source to provide cover to the user.");
         a1.setImageUrl("ImageUrl");
 
 
         Artifact a2 = new Artifact();
         a2.setId("1250808601744904192");
         a2.setName("Invisibility Cloak");
-        a2.setDescrition("An invisibility cloak is used to make the wearer invisible");
+        a2.setDescription("An invisibility cloak is used to make the wearer invisible");
         a2.setImageUrl("ImageUrl");
 
 
@@ -70,7 +67,7 @@ class ArtifactServiceTest {
         Artifact a = new Artifact();
         a.setId("1250808601744904192");
         a.setName("Invisibility Cloak");
-        a.setDescrition("An invisibility cloak is used to make the wearer invisible.");
+        a.setDescription("An invisibility cloak is used to make the wearer invisible.");
         a.setImageUrl("ImageUrl");
 
         Wizard w = new Wizard();
@@ -127,7 +124,7 @@ class ArtifactServiceTest {
         //Given
         Artifact newArtifact = new Artifact();
         newArtifact.setName("Artifact 3");
-        newArtifact.setDescrition("Description...");
+        newArtifact.setDescription("Description...");
         newArtifact.setImageUrl("ImageUrl...");
 
         given(idWorker.nextId()).willReturn(123456L);
@@ -150,13 +147,13 @@ class ArtifactServiceTest {
         Artifact oldArtifact  = new Artifact();
         oldArtifact.setId("1250808601744904192");
         oldArtifact.setName("Invisibility Cloak");
-        oldArtifact.setDescrition("An invisibility cloak is used to make the wearer invisible");
+        oldArtifact.setDescription("An invisibility cloak is used to make the wearer invisible");
         oldArtifact.setImageUrl("ImageUrl");
 
         Artifact update = new Artifact();
         update.setId("1250808601744904192");
         update.setName("Invisibility Cloak");
-        update.setDescrition("A new description.");
+        update.setDescription("A new description.");
         update.setImageUrl("ImageUrl");
 
         given(artifactRepository.findById("1250808601744904192")).willReturn(Optional.of(oldArtifact));
@@ -177,7 +174,7 @@ class ArtifactServiceTest {
         //Given
         Artifact update = new Artifact();
         update.setName("Invisibility Cloak");
-        update.setDescrition("A new description.");
+        update.setDescription("A new description.");
         update.setImageUrl("ImageUrl");
 
         given(artifactRepository.findById("1250808601744904192")).willReturn(Optional.empty());
@@ -198,7 +195,7 @@ class ArtifactServiceTest {
         Artifact artifact = new Artifact();
         artifact.setId("1250808601744904192");
         artifact.setName("Invisibility Cloak");
-        artifact.setDescrition("A new description.");
+        artifact.setDescription("A new description.");
         artifact.setImageUrl("ImageUrl");
 
         given(artifactRepository.findById("1250808601744904192")).willReturn(Optional.of(artifact));

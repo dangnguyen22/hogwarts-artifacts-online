@@ -1,6 +1,5 @@
 package edu.tcu.cs.hogwartsartifactsonline.artifacts;
 
-import edu.tcu.cs.hogwartsartifactsonline.artifacts.dto.ArtifactDto;
 import edu.tcu.cs.hogwartsartifactsonline.artifacts.utils.IdWorker;
 import edu.tcu.cs.hogwartsartifactsonline.system.exception.ObjectNotFoundException;
 import jakarta.transaction.Transactional;
@@ -41,7 +40,7 @@ public class ArtifactService {
      return  this.artifactRepository.findById(artifactId)
                .map(oldArtifact -> {
                     oldArtifact.setName(update.getName());
-                    oldArtifact.setDescrition(update.getDescrition());
+                    oldArtifact.setDescription(update.getDescrition());
                     oldArtifact.setImageUrl(update.getImageUrl());
                     return this.artifactRepository.save(oldArtifact);
                })
