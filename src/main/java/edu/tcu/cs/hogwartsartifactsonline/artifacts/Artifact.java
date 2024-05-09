@@ -52,7 +52,7 @@ public class Artifact implements Serializable {
         return descrition;
     }
 
-    public void setDescrition(String descrition) {
+    public void setDescription(String descrition) {
         this.descrition = descrition;
     }
 

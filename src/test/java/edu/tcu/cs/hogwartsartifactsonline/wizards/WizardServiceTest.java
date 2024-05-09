@@ -71,7 +71,7 @@ class WizardServiceTest {
         Artifact a = new Artifact();
         a.setId("1250808601744904192");
         a.setName("Invisibility Cloak");
-        a.setDescrition("An invisibility cloak is used to make the wearer invisible.");
+        a.setDescription("An invisibility cloak is used to make the wearer invisible.");
         a.setImageUrl("ImageUrl");
 
         Wizard w = new Wizard();
@@ -160,7 +160,7 @@ class WizardServiceTest {
         Artifact a = new Artifact();
         a.setId("1250808601744904192");
         a.setName("Invisibility Cloak");
-        a.setDescrition("An invisibility cloak is used to make the wearer invisible.");
+        a.setDescription("An invisibility cloak is used to make the wearer invisible.");
         a.setImageUrl("ImageUrl");
 
         Wizard w = new Wizard();
@@ -189,7 +189,7 @@ class WizardServiceTest {
         Artifact a = new Artifact();
         a.setId("1250808601744904192");
         a.setName("Invisibility Cloak");
-        a.setDescrition("An invisibility cloak is used to make the wearer invisible.");
+        a.setDescription("An invisibility cloak is used to make the wearer invisible.");
         a.setImageUrl("ImageUrl");
 
         Wizard w = new Wizard();
