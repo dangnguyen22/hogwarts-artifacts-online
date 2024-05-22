@@ -14,7 +14,7 @@ public class Artifact implements Serializable {
     private String id;
     private String name;
 
-    private String descrition;
+    private String description;
 
     private String imageUrl;
 
@@ -48,12 +48,12 @@ public class Artifact implements Serializable {
         return name;
     }
 
-    public String getDescrition() {
-        return descrition;
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String descrition) {
-        this.descrition = descrition;
+        this.description = descrition;
     }
 
     public void setName(String name) {

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
     @Override
     public ArtifactDto convert(Artifact source) {
-        ArtifactDto artifactDto = new ArtifactDto(source.getId(),source.getName(),source.getDescrition(), source.getImageUrl(),
+        ArtifactDto artifactDto = new ArtifactDto(source.getId(),source.getName(),source.getDescription(), source.getImageUrl(),
                source.getOwner() != null ? this.wizardToWizardDtoConverter.convert(source.getOwner()):null);
         return artifactDto;
     }

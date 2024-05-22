@@ -85,7 +85,7 @@ class ArtifactServiceTest {
         //Then. Assert expected outcomes.
         assertThat(returnArtifact.getId()).isEqualTo(a.getId()); //Check if the return values are equal
         assertThat(returnArtifact.getName()).isEqualTo(a.getName());
-        assertThat(returnArtifact.getDescrition()).isEqualTo(a.getDescrition());
+        assertThat(returnArtifact.getDescription()).isEqualTo(a.getDescription());
         assertThat(returnArtifact.getImageUrl()).isEqualTo(a.getImageUrl());
 
         verify(artifactRepository,times(1)).findById("1250808601744904192"); //Verify that mock object method is called once in service object
@@ -137,7 +137,7 @@ class ArtifactServiceTest {
         //Then
         assertThat(savedArtifact.getId()).isEqualTo("123456");
         assertThat(savedArtifact.getName()).isEqualTo(newArtifact.getName());
-        assertThat(savedArtifact.getDescrition()).isEqualTo(newArtifact.getDescrition());
+        assertThat(savedArtifact.getDescription()).isEqualTo(newArtifact.getDescription());
         assertThat(savedArtifact.getImageUrl()).isEqualTo(newArtifact.getImageUrl());
         verify(artifactRepository,times(1)).save(newArtifact);
     }
@@ -165,7 +165,7 @@ class ArtifactServiceTest {
 
         //Then
         assertThat(updatedArtifact.getId()).isEqualTo(update.getId());
-        assertThat(updatedArtifact.getDescrition()).isEqualTo(update.getDescrition());
+        assertThat(updatedArtifact.getDescription()).isEqualTo(update.getDescription());
         verify(artifactRepository,times(1)).findById("1250808601744904192");
         verify(artifactRepository,times(1)).save(oldArtifact);
     }

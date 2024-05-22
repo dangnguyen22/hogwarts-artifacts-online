@@ -161,7 +161,7 @@ class   ArtifactControllerTest {
                 .andExpect(jsonPath("$.message").value("Add Success"))
                 .andExpect(jsonPath("$.data.id").isNotEmpty())
                 .andExpect(jsonPath("$.data.name").value(savedArtifact.getName()))
-                .andExpect(jsonPath("$.data.description").value(savedArtifact.getDescrition()))
+                .andExpect(jsonPath("$.data.description").value(savedArtifact.getDescription()))
                 .andExpect(jsonPath("$.data.imageUrl").value(savedArtifact.getImageUrl()));
     }
 
@@ -187,7 +187,7 @@ class   ArtifactControllerTest {
                 .andExpect(jsonPath("$.message").value("Update Success"))
                 .andExpect(jsonPath("$.data.id").value("1250808601744904192"))
                     .andExpect(jsonPath("$.data.name").value(updatedArtifact.getName()))
-                .andExpect(jsonPath("$.data.description").value(updatedArtifact.getDescrition()))
+                .andExpect(jsonPath("$.data.description").value(updatedArtifact.getDescription()))
                 .andExpect(jsonPath("$.data.imageUrl").value(updatedArtifact.getImageUrl()));
     }
     @Test
