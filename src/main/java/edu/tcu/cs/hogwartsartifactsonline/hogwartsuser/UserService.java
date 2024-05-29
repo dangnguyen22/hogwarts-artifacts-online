@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new ObjectNotFoundException("user",userId));
         oldUser.setUsername(update.getUsername());
         oldUser.setEnabled(update.isEnabled());
-        oldUser.setRole(update.getRole());
+        oldUser.setRoles(update.getRoles());
         return this.userRepository.save(oldUser);
     }
 

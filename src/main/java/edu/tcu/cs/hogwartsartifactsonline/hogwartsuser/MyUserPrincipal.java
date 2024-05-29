@@ -21,7 +21,7 @@ public class MyUserPrincipal implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //Convert a user's role from space-separated string to a list of SimpleGrantedAuthority instances
         //Example: If John's role are stored in a string like "admin user moderator", we need to convert it to a list of SimpleGrantedAuthority instances like [ROLE_ADMIN, ROLE_USER, ROLE_MODERATOR]
-        return Arrays.stream(StringUtils.tokenizeToStringArray(this.hogwartsUser.getRole(),","))
+        return Arrays.stream(StringUtils.tokenizeToStringArray(this.hogwartsUser.getRoles(),","))
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .toList();
     }

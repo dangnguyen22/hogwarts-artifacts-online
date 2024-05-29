@@ -23,7 +23,7 @@ public class HogwartsUser implements Serializable {
     private boolean enabled;
 
     @NotEmpty(message = "Role cannot be empty")
-    private String role;
+    private String roles;
 
     public Integer getId() {
         return id;
@@ -41,12 +41,12 @@ public class HogwartsUser implements Serializable {
         this.username = username;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoles() {
+        return roles;
     }
 
-    public void setRole(String roles) {
-        this.role = roles;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public void setEnabled(boolean enabled) {

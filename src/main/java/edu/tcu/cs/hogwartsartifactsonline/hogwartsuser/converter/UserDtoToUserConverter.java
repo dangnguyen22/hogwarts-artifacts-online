@@ -13,7 +13,7 @@ public class UserDtoToUserConverter implements Converter<UserDto, HogwartsUser> 
         hogwartsUser.setId(source.id());
         hogwartsUser.setUsername(source.username());
         hogwartsUser.setEnabled(source.enabled());
-        hogwartsUser.setRole(source.roles());
+        hogwartsUser.setRoles(source.roles());
         return hogwartsUser;
     }
 }
